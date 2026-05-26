@@ -1,0 +1,8 @@
+# LogIDS Detector — Dépendances
+
+# Aucune dépendance externe requise pour le fonctionnement de base.
+# L'outil utilise uniquement la bibliothèque standard Python.
+
+# Optionnel : pour des fonctionnalités avancées
+# matplotlib>=3.7.0    # Pour les graphiques de tendances temporelles
+# maxminddb>=2.2.0     # Pour la géolocalisation des IP
