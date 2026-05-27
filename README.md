@@ -1,66 +1,73 @@
-# 🛡️ LogIDS Detector — Log Analyzer for Intrusion Detection
+# PhishGuard Detector - Detecteur d'URL de phishing par heuristiques
 
-> **Auteur** : Jamein N. Dietrich A.  
-> **Contexte** : Projet personnel en cybersécurité — Analyse de logs et détection d'intrusions
+Auteur : Jamein N. Dietrich A.
+Contexte : Projet personnel en cyberscurite - Detection de phishing par analyse heuristique des URLs
 
-## 📋 Description
+## Description
 
-LogIDS Detector est un outil Python d'analyse de logs système qui permet de :
+PhishGuard Detector est un outil educatif qui analyse les URLs pour detecter les tentatives de phishing. Il utilise un ensemble d'heuristiques pour evaluee le niveau de risque de chaque URL et identifier les techniques classiques utilisees par les attaquants.
 
-- **Parser les logs** Apache, Nginx, SSH, et auth.log (Linux)
-- **Détecter les tentatives de brute force** (multiples échecs de connexion depuis une même IP)
-- **Identifier les scans de ports** (tentatives de connexion sur de nombreux ports)
-- **Repérer les injections SQL et XSS** dans les requêtes HTTP
-- **Détecter les accès suspects** (heures inhabituelles, géolocalisation anormale)
-- **Générer des alertes** et des rapports de sécurité structurés
-- **Visualiser les tendances temporelles** des événements de sécurité
+Fonctionnalites principales :
+- Detection d'usurpation de domaine (domain mismatch)
+- Identification des TLD a risque eleve
+- Detection d'usurpation de marques connues
+- Detection d'attaques par homoglyphes (caracteres Unicode trompeurs)
+- Analyse des mots cles suspects dans les URLs
+- Detection des sous-domaines suspects
+- Identification des URLs raccourcies et adresses IP
+- Analyse par lot depuis un fichier
+- Systeme de score de risque (0-100)
+- Mode demonstration avec URLs de test
 
-## 🎯 Compétences cybersécurité démontrées
+## Competences cyberscurite demontrees
 
-| Compétence | Mise en œuvre |
-|-----------|---------------|
-| SIEM & monitoring | Analyse de logs centralisée |
-| Détection d'intrusion (IDS) | Règles de détection de patterns d'attaque |
-| Forensique numérique | Analyse post-incident des traces |
-| Brute force detection | Seuil de tentatives échouées par IP |
-| Web Application Security | Détection d'injections SQL/XSS dans les logs |
-| Threat Intelligence | Corrélation IP/patterns d'attaque connus |
-| Reporting de sécurité | Génération de rapports d'incidents |
+| Competence | Description |
+|---|---|
+| Analyse de phishing | Identification des URLs malveillantes |
+| Heuristiques | Mise en place de regles de detection |
+| Usurpation de marque | Detection d'imitation de domaines connus |
+| Attaques homoglyphes | Detection de caracteres Unicode trompeurs |
+| Scoring de risque | Evaluation quantitative du danger |
+| OSINT | Analyse de metadonnees d'URLs |
 
-## ⚙️ Installation
-
-```bash
-git clone https://github.com/<votre-username>/logids-detector.git
-cd logids-detector
-pip install -r requirements.txt
-```
-
-## 🚀 Utilisation
+## Installation
 
 ```bash
-# Analyser un log Apache/Nginx
-python logids.py analyze --log /var/log/apache2/access.log --type apache
-
-# Analyser un log SSH
-python logids.py analyze --log /var/log/auth.log --type ssh
-
-# Analyser avec seuils personnalisés
-python logids.py analyze --log access.log --type apache --brute-force-threshold 10 --port-scan-threshold 15
-
-# Générer un rapport complet
-python logids.py analyze --log access.log --type apache --report rapport_securite.html
-
-# Analyser avec les logs de démo intégrés
-python logids.py demo
-
-# Lister les règles de détection actives
-python logids.py rules
+git clone <url-du-depot>
+cd phishguard-detector
 ```
 
-## ⚠️ Avertissement éthique
+Aucune dependance externe necessaire - utilise uniquement la bibliotheque standard Python.
 
-Cet outil est conçu pour l'analyse de **vos propres logs** ou de logs que vous êtes autorisé à analyser. La surveillance non autorisée de systèmes est illégale.
+## Utilisation
 
-## 📜 Licence
+Analyser une URL :
+```bash
+python3 phishguard.py -u "https://paypal-secure.verify-account.com/login"
+```
 
-MIT License — Libre d'utilisation à des fins éducatives.
+Analyser un fichier d'URLs :
+```bash
+python3 phishguard.py -f urls_a_analyser.txt
+```
+
+Mode demonstration :
+```bash
+python3 phishguard.py --demo
+```
+
+## Structure du projet
+
+```
+phishguard-detector/
+  |-- phishguard.py    # Script principal avec toutes les fonctionnalites
+  |-- README.md        # Documentation du projet
+```
+
+## Avertissement ethique
+
+Cet outil est strictement destine a un usage educatif. Les heuristiques utilisees sont simplifiees a des fins pedagogiques et ne remplacent pas un systeme de detection professionnel. Ne pas utiliser cet outil pour creer des URLs de phishing. L'auteur decline toute responsabilite quant a l'utilisation abusive de cet outil.
+
+## Licence
+
+MIT License
